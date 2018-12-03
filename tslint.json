@@ -9,5 +9,6 @@
     "ordered-imports": false,
     "interface-name": false
   },
-  "rulesDirectory": []
+  "rulesDirectory": [],
+  "exclude": ["**/*.test.ts"]
 }
