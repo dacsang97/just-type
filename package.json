@@ -5,8 +5,10 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/fs-extra": "^5.0.4",
+    "@types/ioredis": "^4.0.4",
     "@types/jest": "^23.3.10",
     "@types/node": "^10.12.11",
+    "@types/uuid": "^3.4.4",
     "@types/yup": "^0.26.2",
     "gql2ts": "^1.10.1",
     "jest": "^23.6.0",
@@ -25,9 +27,11 @@
     "graphql-request": "^1.8.2",
     "graphql-tools": "^4.0.3",
     "graphql-yoga": "^1.16.7",
+    "ioredis": "^4.2.0",
     "pg": "^7.7.1",
     "reflect-metadata": "^0.1.12",
     "typeorm": "0.2.9",
+    "uuid": "^3.3.2",
     "yup": "^0.26.6"
   },
   "scripts": {

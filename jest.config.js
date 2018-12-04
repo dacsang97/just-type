@@ -1,11 +1,5 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  globals: {
-    'ts-jest': {
-      diagnostics: {
-        noImplicitAny: false,
-      },
-    },
-  },
+  globalSetup: './src/testSetup/callSetup.js',
 }
