@@ -4,10 +4,10 @@ import { importSchema } from 'graphql-import'
 import fs from 'fs-extra'
 import { makeExecutableSchema, mergeSchemas } from 'graphql-tools'
 import { GraphQLSchema } from 'graphql'
-import Redis from 'ioredis'
 
 import { createTypeormConn } from './utils/createTypeormConn'
-import { User } from './entity/User'
+import { confirmEmail } from './routes/confirmEmail'
+import { redis } from './redis'
 
 export const startServer = async () => {
   let schemas: GraphQLSchema[] = []
@@ -20,8 +20,6 @@ export const startServer = async () => {
     schemas.push(makeExecutableSchema({ resolvers, typeDefs }))
   })
 
-  const redis = new Redis()
-
   const server = new GraphQLServer({
     schema: mergeSchemas({ schemas }),
     context: ({ request }) => ({
@@ -30,17 +28,7 @@ export const startServer = async () => {
     }),
   })
 
-  server.express.get('/confirm/:id', async (req, res) => {
-    const { id } = req.params
-    const userId = await redis.get(id)
-    if (userId) {
-      await User.update({ id: userId as string }, { confirmed: true })
-      await redis.del(id)
-      res.send('ok')
-    } else {
-      res.send('invalid')
-    }
-  })
+  server.express.get('/confirm/:id', confirmEmail)
 
   await createTypeormConn()
   const app = await server.start({
