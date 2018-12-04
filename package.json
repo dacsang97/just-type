@@ -10,7 +10,6 @@
     "@types/node": "^10.12.11",
     "@types/uuid": "^3.4.4",
     "@types/yup": "^0.26.2",
-    "gql2ts": "^1.10.1",
     "jest": "^23.6.0",
     "nodemon": "^1.18.7",
     "ts-jest": "^23.10.5",
@@ -20,6 +19,7 @@
     "typescript": "2.9.2"
   },
   "dependencies": {
+    "@gql2ts/from-schema": "^1.10.1",
     "bcryptjs": "^2.4.3",
     "fs-extra": "^7.0.1",
     "graphql": "^14.0.2",
@@ -39,6 +39,6 @@
     "start": "NODE_ENV=development nodemon --exec ts-node src/index.ts",
     "test-server": "NODE_ENV=test ts-node src/index.ts",
     "test": "jest --forceExit",
-    "gen-gql-type": "gql2ts src/schema.graphql -o src/types/schema.d.ts"
+    "gen-types": "ts-node src/scripts/createTypes.ts"
   }
 }
