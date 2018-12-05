@@ -1,10 +1,15 @@
 import { generateNamespace } from '@gql2ts/from-schema'
+import * as fs from 'fs'
+import * as path from 'path'
+
 import { genSchema } from '../utils/genSchema'
-import { writeFile } from 'fs-extra'
-import { join } from 'path'
 
-const schema = genSchema()
+const typescriptTypes = generateNamespace('GQL', genSchema())
 
-const myNamespace = generateNamespace('GQL', schema)
-
-writeFile(join(__dirname, '../types/schema.d.ts'), myNamespace)
+fs.writeFile(
+  path.join(__dirname, '../types/schema/index.d.ts'),
+  typescriptTypes,
+  err => {
+    console.log(err)
+  },
+)

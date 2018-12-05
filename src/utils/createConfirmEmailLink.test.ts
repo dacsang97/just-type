@@ -1,4 +1,4 @@
-import Redis from 'ioredis'
+import * as Redis from 'ioredis'
 import fetch from 'node-fetch'
 
 import { createConfirmEmailLink } from './createConfirmEmailLink'
